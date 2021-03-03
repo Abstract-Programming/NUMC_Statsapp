@@ -1,15 +1,22 @@
 package com.neumontmc.stats_app.Controllers;
 
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-import Controllers.NAPI;
-import Models.User;
-import Models.User_mcmmo;
-import Models.ustats.Ustats;
+import com.neumontmc.api.Controllers.NAPI;
+import com.neumontmc.api.Models.User;
+import com.neumontmc.api.Models.User_mcmmo;
+import com.neumontmc.api.Models.ustats.Ustats;
+import com.neumontmc.stats_app.Activities.MainActivity;
+
+import javax.xml.transform.Result;
+
+import static androidx.core.content.ContextCompat.startActivity;
 
 public class APIController implements Parcelable {
     private ArrayList<User> userList = null;
@@ -61,12 +68,16 @@ public class APIController implements Parcelable {
      * @throws InterruptedException if there is an issues with the threads.
      */
     public void init() throws InterruptedException {
+        System.out.println("Staring init...");
         getUsers.start();
         getUsers.join();
+        System.out.println("Got users.");
         getMcmmo.start();
         getMcmmo.join();
+        System.out.println("Got mcmmo stats.");
         getUstats.start();
         getUstats.join();
+        System.out.println("Got ustats.");
     }
 
     //Getters and Setters
@@ -114,8 +125,12 @@ public class APIController implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeArray(new ArrayList[]{userList});
-        dest.writeArray(new ArrayList[]{mcmmoList});
-        dest.writeArray(new ArrayList[]{ustats});
+        try {
+            dest.writeArray(new ArrayList[]{userList});
+            dest.writeArray(new ArrayList[]{mcmmoList});
+            dest.writeArray(new ArrayList[]{ustats});
+        }catch (RuntimeException e){
+
+        }
     }
 }
