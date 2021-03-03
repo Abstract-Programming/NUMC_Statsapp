@@ -6,6 +6,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import com.neumontmc.api.Controllers.NAPI;
@@ -18,11 +19,11 @@ import javax.xml.transform.Result;
 
 import static androidx.core.content.ContextCompat.startActivity;
 
-public class APIController implements Parcelable {
+public class APIController implements Parcelable, Serializable {
     private ArrayList<User> userList = null;
     private ArrayList<User_mcmmo> mcmmoList = null;
     private ArrayList<Ustats> ustats = null;
-    private Thread getUsers = new Thread(new Runnable() {
+    private transient final Thread getUsers = new Thread(new Runnable() {
         @Override
         public void run() {
             try {
@@ -32,7 +33,7 @@ public class APIController implements Parcelable {
             }
         }
     });
-    private Thread getMcmmo = new Thread(new Runnable() {
+    private transient final Thread getMcmmo = new Thread(new Runnable() {
         @Override
         public void run() {
             try {
@@ -42,7 +43,7 @@ public class APIController implements Parcelable {
             }
         }
     });
-    private Thread getUstats = new Thread(new Runnable() {
+    private transient final Thread getUstats = new Thread(new Runnable() {
         @Override
         public void run() {
             try {
