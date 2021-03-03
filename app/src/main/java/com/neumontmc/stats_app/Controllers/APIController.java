@@ -1,5 +1,8 @@
 package com.neumontmc.stats_app.Controllers;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -8,7 +11,7 @@ import Models.User;
 import Models.User_mcmmo;
 import Models.ustats.Ustats;
 
-public class APIController {
+public class APIController implements Parcelable {
     private ArrayList<User> userList = null;
     private ArrayList<User_mcmmo> mcmmoList = null;
     private ArrayList<Ustats> ustats = null;
@@ -43,6 +46,16 @@ public class APIController {
         }
     });
 
+    //Parcel constructor
+    public APIController(Parcel parcel){
+        this.userList = parcel.readArrayList(null);
+        this.mcmmoList = parcel.readArrayList(null);
+        this.ustats = parcel.readArrayList(null);
+    }
+
+    //Default constructor
+    public APIController(){}
+
     /**
      * Get all user obj's from the API and save them to Arrays.
      * @throws InterruptedException if there is an issues with the threads.
@@ -56,6 +69,7 @@ public class APIController {
         getUstats.join();
     }
 
+    //Getters and Setters
     public ArrayList<Ustats> getUstats() {
         return ustats;
     }
@@ -78,5 +92,30 @@ public class APIController {
 
     public void setMcmmoList(ArrayList<User_mcmmo> mcmmoList) {
         this.mcmmoList = mcmmoList;
+    }
+
+    //Parcel implementations
+    public static final Creator<APIController> CREATOR = new Creator<APIController>() {
+        @Override
+        public APIController createFromParcel(Parcel in) {
+            return new APIController(in);
+        }
+
+        @Override
+        public APIController[] newArray(int size) {
+            return new APIController[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeArray(new ArrayList[]{userList});
+        dest.writeArray(new ArrayList[]{mcmmoList});
+        dest.writeArray(new ArrayList[]{ustats});
     }
 }
