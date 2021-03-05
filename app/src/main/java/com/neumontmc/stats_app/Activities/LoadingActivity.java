@@ -67,9 +67,7 @@ public class LoadingActivity extends AppCompatActivity {
 
     @SuppressLint("UseCompatLoadingForDrawables")
     public void run() {
-
         runOnUiThread(() -> {
-
             errorMessage = findViewById(R.id.loadingErrorMessage);
             retryConnectionButton = findViewById(R.id.retryConnection);
             logo = findViewById(R.id.imageView);
