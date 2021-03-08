@@ -109,16 +109,22 @@ public class LoadingActivity extends AppCompatActivity {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                } else {
-                    errorMessage.setText("Could not connect to the internet.");
-                    errorMessage.setVisibility(View.VISIBLE);
-                    retryConnectionButton.setClickable(true);
-                    retryConnectionButton.setEnabled(true);
-                    retryConnectionButton.setVisibility(View.VISIBLE);
+                }else{
+                    setErrorNetMessage();
                 }
             }
         }).start();
 
+    }
+
+    public void setErrorNetMessage(){
+        runOnUiThread(() -> {
+            errorMessage.setText("Could not connect to the internet.");
+            errorMessage.setVisibility(View.VISIBLE);
+            retryConnectionButton.setClickable(true);
+            retryConnectionButton.setEnabled(true);
+            retryConnectionButton.setVisibility(View.VISIBLE);
+        });
     }
 
     public void onClickRetryConnection(View v) {
