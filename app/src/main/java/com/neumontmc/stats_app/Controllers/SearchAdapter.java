@@ -1,5 +1,6 @@
 package com.neumontmc.stats_app.Controllers;
 
+import com.neumontmc.api.Models.User;
 import com.neumontmc.stats_app.R;
 import com.neumontmc.stats_app.View.UserStats;
 
@@ -14,15 +15,16 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder>{
+import java.util.ArrayList;
 
-    String[] nameData, uuidData;
+public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder> {
+
+    ArrayList<User> users;
     Context context;
 
-    public SearchAdapter(Context ct, String[] name, String[] uuid) {
+    public SearchAdapter(Context ct, ArrayList<User> users) {
         context = ct;
-        nameData = name;
-        uuidData = uuid;
+        this.users = users;
     }
 
     @NonNull
@@ -35,15 +37,16 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.nameTV.setText(nameData[position]);
-        holder.uuidTV.setText(uuidData[position]);
-
+//        holder.nameTV.setText(nameData[position]);
+//        holder.uuidTV.setText(uuidData[position]);
+          holder.nameTV.setText(users.get(position).getUsername());
+            holder.uuidTV.setText(users.get(position).getUuid().toString());
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, UserStats.class);
-                intent.putExtra("name", nameData[position]);
-                intent.putExtra("uuid", uuidData[position]);
+                intent.putExtra("name", users.get(position).getUsername());
+                intent.putExtra("uuid", users.get(position).getUuid().toString());
                 context.startActivity(intent);
             }
         });
@@ -51,15 +54,15 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        return nameData.length;
+        return users.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView nameTV, uuidTV;
         ConstraintLayout mainLayout;
 
-        public ViewHolder(@NonNull View itemView){
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
             nameTV = itemView.findViewById(R.id.cardNameTextView);
             uuidTV = itemView.findViewById(R.id.cardUuidTextView);
