@@ -75,7 +75,7 @@ public class SearchUsersActivity extends AppCompatActivity {
     //ImageView imgv = (nestAPI) nAPI.getUserImage(users.get(position).getUsername());
 
     private void genViewer(ArrayList<User> currentUsers){
-        SearchAdapter sAdapter = new SearchAdapter(this, users);
+        SearchAdapter sAdapter = new SearchAdapter(this, currentUsers);
         recyclerView.setAdapter(sAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
