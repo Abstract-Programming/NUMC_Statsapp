@@ -1,5 +1,8 @@
 package com.neumontmc.stats_app.View;
 
+import com.neumontmc.api.Models.User;
+import com.neumontmc.stats_app.Controllers.APIController;
+import com.neumontmc.stats_app.Controllers.ObjCompressor;
 import com.neumontmc.stats_app.Controllers.SearchAdapter;
 import com.neumontmc.stats_app.R;
 
@@ -12,20 +15,31 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class SearchUsersActivity extends AppCompatActivity {
-
+    APIController apic;
     RecyclerView recyclerView;
 
     String[] names, uuids;
+    ArrayList<User> users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_users);
 
+        try  {
+            ObjCompressor objCompressor = new ObjCompressor();
+            apic = (APIController) objCompressor.decompressObject(getIntent().getByteArrayExtra("compressedApiController"));
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
         recyclerView = findViewById(R.id.reView);
+
+        users = apic.getUserList();
 
         //names = //Get names
         //uuids = //Get uuids
@@ -53,14 +67,11 @@ public class SearchUsersActivity extends AppCompatActivity {
 
     private void filter(String text){
         ArrayList<String> filteredList = new ArrayList<>();
-
-        for (String string : names){
-            if (string.toLowerCase().contains(text.toLowerCase())){
-                filteredList.add(string);
-
+        for (User u : users){
+            if (u.getUsername().toLowerCase().contains(text.toLowerCase())){
+                filteredList.add(u.getUsername());
             }
         }
-
         genViewer((String[])filteredList.toArray());
     }
 
