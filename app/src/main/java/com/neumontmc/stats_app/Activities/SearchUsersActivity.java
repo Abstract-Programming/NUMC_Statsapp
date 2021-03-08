@@ -22,7 +22,6 @@ public class SearchUsersActivity extends AppCompatActivity {
     APIController apic;
     RecyclerView recyclerView;
 
-    String[] names, uuids;
     ArrayList<User> users;
 
     @Override
@@ -41,10 +40,7 @@ public class SearchUsersActivity extends AppCompatActivity {
 
         users = apic.getUserList();
 
-        //names = //Get names
-        //uuids = //Get uuids
-
-        genViewer(names);
+        genViewer(users);
 
         EditText searchUserET = findViewById(R.id.searchUserET);
         searchUserET.addTextChangedListener(new TextWatcher() {
@@ -66,17 +62,19 @@ public class SearchUsersActivity extends AppCompatActivity {
     }
 
     private void filter(String text){
-        ArrayList<String> filteredList = new ArrayList<>();
+        ArrayList<User> filteredList = new ArrayList<>();
         for (User u : users){
             if (u.getUsername().toLowerCase().contains(text.toLowerCase())){
-                filteredList.add(u.getUsername());
+                filteredList.add(u);
+            } else if (u.getUuid().toString().toLowerCase().contains(text.toLowerCase())){
+                filteredList.add(u);
             }
         }
-        genViewer((String[])filteredList.toArray());
+        genViewer(filteredList);
     }
     //ImageView imgv = (nestAPI) nAPI.getUserImage(users.get(position).getUsername());
 
-    private void genViewer(String[] currentNames){
+    private void genViewer(ArrayList<User> currentUsers){
         SearchAdapter sAdapter = new SearchAdapter(this, users);
         recyclerView.setAdapter(sAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
