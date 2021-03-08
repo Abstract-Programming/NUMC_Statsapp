@@ -39,8 +39,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 //        holder.nameTV.setText(nameData[position]);
 //        holder.uuidTV.setText(uuidData[position]);
-          holder.nameTV.setText(users.get(position).getUsername());
-            holder.uuidTV.setText(users.get(position).getUuid().toString());
+        holder.nameTV.setText(users.get(position).getUsername());
+        holder.uuidTV.setText(users.get(position).getUuid().toString());
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

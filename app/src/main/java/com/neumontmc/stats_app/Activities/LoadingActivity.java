@@ -3,7 +3,6 @@ package com.neumontmc.stats_app.Activities;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityOptions;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.AnimationDrawable;
@@ -27,24 +26,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 import com.neumontmc.stats_app.Controllers.APIController;
 import com.neumontmc.stats_app.Controllers.ObjCompressor;
 import com.neumontmc.stats_app.R;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.zip.GZIPOutputStream;
-
-import javax.servlet.http.HttpServletResponse;
-
-import static androidx.core.content.ContextCompat.getSystemService;
-import static androidx.core.content.ContextCompat.startActivity;
 
 public class LoadingActivity extends AppCompatActivity {
     private ActivityOptions options;
@@ -102,7 +86,7 @@ public class LoadingActivity extends AppCompatActivity {
                     try {
                         APIController apiController = new APIController();
                         apiController.init(); //Load datasets from remote
-                        nextIntent = new Intent(getApplicationContext(), MainActivity.class); //Create new APIController parcel
+                        nextIntent = new Intent(getApplicationContext(), SearchUsersActivity.class); //Create new APIController parcel
                         byte[] compressedObj = new ObjCompressor().compressObject(apiController);//Compress apiController (needed to prevent BINDER exception)
                         nextIntent.putExtra("compressedApiController", compressedObj); //Pass parcel to intent
                         moveToMainActivity();

@@ -1,4 +1,4 @@
-package com.neumontmc.stats_app.View;
+package com.neumontmc.stats_app.Activities;
 
 import com.neumontmc.api.Models.User;
 import com.neumontmc.stats_app.Controllers.APIController;

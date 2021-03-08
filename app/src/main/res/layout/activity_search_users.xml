@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#292C31"
-    tools:context=".View.SearchUsersActivity">
+    tools:context=".Activities.SearchUsersActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/reView"
