@@ -76,7 +76,7 @@ public class SearchUsersActivity extends AppCompatActivity {
     }
 
     private void genViewer(String[] currentNames){
-        SearchAdapter sAdapter = new SearchAdapter(this, currentNames, uuids);
+        SearchAdapter sAdapter = new SearchAdapter(this, users);
         recyclerView.setAdapter(sAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
