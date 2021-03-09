@@ -55,6 +55,9 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
                 Intent intent = new Intent(context, UserStats.class);
                 intent.putExtra("name", users.get(position).getUsername());
                 intent.putExtra("uuid", users.get(position).getUuid().getUUID());
+
+                byte[] compressedObj = new ObjCompressor().compressObject(apiController);//Compress apiController (needed to prevent BINDER exception)
+                intent.putExtra("compressedApiController", compressedObj);
                 context.startActivity(intent);
             }
         });
@@ -65,7 +68,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         return users.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView nameTV, uuidTV;
         ImageView userImage;

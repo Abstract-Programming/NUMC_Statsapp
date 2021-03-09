@@ -9,13 +9,15 @@
 
     <TextView
         android:id="@+id/us_UuidTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_width="208dp"
+        android:layout_height="17dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
+        android:gravity="right|center_vertical"
+        android:justificationMode="inter_word"
         android:text="UUID"
         android:textColor="#E4E4E4"
-        android:textSize="14sp"
+        android:textSize="13sp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -33,13 +35,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/us_RandomStatsTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="STATS HERE"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/stats"
+        android:layout_width="405dp"
+        android:layout_height="673dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
