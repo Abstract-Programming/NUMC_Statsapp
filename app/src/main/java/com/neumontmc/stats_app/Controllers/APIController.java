@@ -1,9 +1,8 @@
 package com.neumontmc.stats_app.Controllers;
 
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -13,11 +12,7 @@ import com.neumontmc.api.Controllers.NAPI;
 import com.neumontmc.api.Models.User;
 import com.neumontmc.api.Models.User_mcmmo;
 import com.neumontmc.api.Models.ustats.Ustats;
-import com.neumontmc.stats_app.Activities.MainActivity;
 
-import javax.xml.transform.Result;
-
-import static androidx.core.content.ContextCompat.startActivity;
 
 public class APIController implements Parcelable, Serializable {
     private ArrayList<User> userList = null;
@@ -131,7 +126,8 @@ public class APIController implements Parcelable, Serializable {
             dest.writeArray(new ArrayList[]{mcmmoList});
             dest.writeArray(new ArrayList[]{ustats});
         }catch (RuntimeException e){
-
+            Log.e("FATAL ERROR", "Failed to write to parcel arrays.");
+            e.printStackTrace();
         }
     }
 }
