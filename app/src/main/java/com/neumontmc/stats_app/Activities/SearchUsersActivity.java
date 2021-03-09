@@ -40,7 +40,7 @@ public class SearchUsersActivity extends AppCompatActivity {
 
         users = apic.getUserList();
 
-        genViewer(users);
+        genViewer(removeFaction(users));
 
         EditText searchUserET = findViewById(R.id.searchUserET);
         searchUserET.addTextChangedListener(new TextWatcher() {
@@ -61,6 +61,18 @@ public class SearchUsersActivity extends AppCompatActivity {
         });
     }
 
+    private ArrayList<User> removeFaction(ArrayList<User> currentList){
+        ArrayList<User> cleanList = new ArrayList<>();
+
+        for (User u : currentList){
+            if (!u.getUsername().toLowerCase().contains("faction-")){
+                cleanList.add(u);
+            }
+        }
+
+        return cleanList;
+    }
+
     private void filter(String text){
         ArrayList<User> filteredList = new ArrayList<>();
         for (User u : users){
@@ -70,7 +82,7 @@ public class SearchUsersActivity extends AppCompatActivity {
                 filteredList.add(u);
             }
         }
-        genViewer(filteredList);
+        genViewer(removeFaction(filteredList));
     }
     //ImageView imgv = (nestAPI) nAPI.getUserImage(users.get(position).getUsername());
 
