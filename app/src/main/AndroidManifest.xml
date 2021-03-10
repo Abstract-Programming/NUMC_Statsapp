@@ -23,7 +23,7 @@
         </activity>
         <activity android:name=".Activities.MainActivity"></activity>
         <activity android:name=".Activities.SearchUsersActivity"></activity>
-        <activity android:name=".View.UserStats"></activity>
+        <activity android:name=".Activities.UserStats"></activity>
     </application>
 
 </manifest>

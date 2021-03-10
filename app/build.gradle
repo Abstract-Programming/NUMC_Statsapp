@@ -47,7 +47,7 @@ dependencies {
     implementation "androidx.cardview:cardview:1.0.0"
     implementation "androidx.core:core:$core_version"
     implementation "androidx.core:core-ktx:$core_version"
-    implementation 'sh.vex:jsonviewer:1.0.0'
+    //implementation 'sh.vex:jsonviewer:1.0.0'
 //    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.0.1'
 //    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
 }

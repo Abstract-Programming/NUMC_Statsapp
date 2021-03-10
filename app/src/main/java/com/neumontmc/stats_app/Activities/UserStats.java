@@ -1,24 +1,18 @@
-package com.neumontmc.stats_app.View;
+package com.neumontmc.stats_app.Activities;
 
-import com.neumontmc.api.Models.ustats.Ustats;
 import com.neumontmc.stats_app.Controllers.APIController;
 import com.neumontmc.stats_app.Controllers.ObjCompressor;
-import com.neumontmc.stats_app.Controllers.SearchAdapter;
-import com.neumontmc.stats_app.Controllers.StatAdapter;
 import com.neumontmc.stats_app.R;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.io.IOException;
-import java.util.ArrayList;
 
-import sh.vex.jsonviewer.JsonViewer;
+
+import com.neumontmc.stats_app.Controllers.JsonView;
 
 public class UserStats extends AppCompatActivity {
 
@@ -27,8 +21,8 @@ public class UserStats extends AppCompatActivity {
     String nameData, uuidData;
 
     APIController apic;
-    String[] availableAttributes;
 
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,18 +37,19 @@ public class UserStats extends AppCompatActivity {
         uuidTV = findViewById(R.id.us_UuidTextView);
         getData();
         setData();
-        JsonViewer jsonViewer = findViewById(R.id.jsonViewer);
-        for(int i = 0; i < apic.getDatablocks().size(); i++){
-            if(apic.getDatablocks().get(i).contains(getIntent().getStringExtra("uuid"))){
-                jsonViewer.setJson(apic.getDatablocks().get(i));
+        JsonView jsonView = findViewById(R.id.jsonViewer);
+        for (int i = 0; i < apic.getDatablocks().size(); i++) {
+            if (apic.getDatablocks().get(i).contains(getIntent().getStringExtra("uuid"))) {
+                jsonView.setJson(apic.getDatablocks().get(i));
+                TextView noStatsMessages = findViewById(R.id.noStatsMessage);
+                noStatsMessages.setVisibility(View.GONE);
                 break;
             }
         }
-
     }
 
-    public void getData(){
-        if (getIntent().hasExtra("name") && getIntent().hasExtra("uuid")){
+    public void getData() {
+        if (getIntent().hasExtra("name") && getIntent().hasExtra("uuid")) {
             nameData = getIntent().getStringExtra("name");
             uuidData = getIntent().getStringExtra("uuid");
         } else {
@@ -62,7 +57,7 @@ public class UserStats extends AppCompatActivity {
         }
     }
 
-    public void setData(){
+    public void setData() {
         nameTV.setText(nameData);
         uuidTV.setText(uuidData);
     }

@@ -5,7 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#292C31"
-    tools:context=".View.UserStats">
+    tools:context=".Activities.UserStats">
+
+    <TextView
+        android:id="@+id/noStatsMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="（　ﾟДﾟ） No stats here..."
+        android:textColor="#C3C3C3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/us_UuidTextView"
@@ -52,10 +64,12 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <sh.vex.jsonviewer.JsonViewer
+            <com.neumontmc.stats_app.Controllers.JsonView
                 android:id="@+id/jsonViewer"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent" >
+
+            </com.neumontmc.stats_app.Controllers.JsonView>
         </LinearLayout>
     </ScrollView>
 
