@@ -15,8 +15,10 @@ import com.neumontmc.stats_app.R;
 import java.util.ArrayList;
 
 public class StatAdapter extends RecyclerView.Adapter<StatAdapter.ViewHolder>{
-    Context context;
+
     ArrayList<Ustats> ustast;
+    Context context;
+
     public StatAdapter(Context ct, ArrayList<Ustats> ustast) {
         context = ct;
         this.ustast = ustast;
@@ -33,12 +35,12 @@ public class StatAdapter extends RecyclerView.Adapter<StatAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.key.setText(ustast.get(position).getUUID());
-        holder.key.setText(ustast.get(position).getContent().getDeaths().toString());
+        holder.value.setText(ustast.get(position).getContent().getDeaths().toString());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return ustast.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

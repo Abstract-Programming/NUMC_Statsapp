@@ -1,5 +1,6 @@
 package com.neumontmc.stats_app.View;
 
+import com.neumontmc.api.Models.ustats.Ustats;
 import com.neumontmc.stats_app.Controllers.APIController;
 import com.neumontmc.stats_app.Controllers.ObjCompressor;
 import com.neumontmc.stats_app.Controllers.SearchAdapter;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class UserStats extends AppCompatActivity {
 
