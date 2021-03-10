@@ -56,8 +56,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
                 intent.putExtra("name", users.get(position).getUsername());
                 intent.putExtra("uuid", users.get(position).getUuid().getUUID());
 
-                byte[] compressedObj = new ObjCompressor().compressObject(apiController);//Compress apiController (needed to prevent BINDER exception)
-                intent.putExtra("compressedApiController", compressedObj);
+                //byte[] compressedObj = new ObjCompressor().compressObject(apiController);//Compress apiController (needed to prevent BINDER exception)
+                //intent.putExtra("compressedApiController", compressedObj);
                 context.startActivity(intent);
             }
         });

@@ -18,6 +18,7 @@ public class APIController implements Parcelable, Serializable {
     private ArrayList<User> userList = null;
     private ArrayList<User_mcmmo> mcmmoList = null;
     private ArrayList<Ustats> ustats = null;
+    private ArrayList<String> datablocks = null;
     private transient final Thread getUsers = new Thread(new Runnable() {
         @Override
         public void run() {
@@ -42,7 +43,8 @@ public class APIController implements Parcelable, Serializable {
         @Override
         public void run() {
             try {
-                setUstats(new NAPI().getORMUserStats());
+                //setUstats(new NAPI().getORMUserStats());
+                setDatablocks(new NAPI().getJSONBefhelsterung().mapSerialUserStatsToDataBlocks(new NAPI().getJSONBefhelsterung().getUserStatsDataObj()));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -99,6 +101,14 @@ public class APIController implements Parcelable, Serializable {
 
     public void setMcmmoList(ArrayList<User_mcmmo> mcmmoList) {
         this.mcmmoList = mcmmoList;
+    }
+
+    public ArrayList<String> getDatablocks() {
+        return datablocks;
+    }
+
+    public void setDatablocks(ArrayList<String> datablocks) {
+        this.datablocks = datablocks;
     }
 
     //Parcel implementations
