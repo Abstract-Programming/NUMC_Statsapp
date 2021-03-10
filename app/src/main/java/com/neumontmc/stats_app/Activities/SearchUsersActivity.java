@@ -1,6 +1,7 @@
 package com.neumontmc.stats_app.Activities;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.jakewharton.processphoenix.ProcessPhoenix;
 import com.neumontmc.api.Models.User;
 import com.neumontmc.stats_app.Controllers.APIController;
 import com.neumontmc.stats_app.Controllers.ObjCompressor;
@@ -70,6 +71,13 @@ public class SearchUsersActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (!isFABOpen) showFABMenu();
                 else closeFABMenu();
+            }
+        });
+
+        reload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ProcessPhoenix.triggerRebirth(getApplicationContext());
             }
         });
 

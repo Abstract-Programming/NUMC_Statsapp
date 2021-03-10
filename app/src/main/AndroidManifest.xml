@@ -3,10 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.neumontmc.stats_app">
 
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-
-    <uses-feature android:name="android.hardware.type.watch" />
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -18,31 +14,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Numc_ststs">
-        <uses-library
-            android:name="com.google.android.wearable"
-            android:required="true" />
-
-        <!--
-               Set to true if your app is Standalone, that is, it does not require the handheld
-               app to run.
-        -->
-        <meta-data
-            android:name="com.google.android.wearable.standalone"
-            android:value="true" />
 
         <activity
             android:name=".Activities.InformationActivity"
             android:label="@string/title_activity_information">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".Activities.LoadingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+                <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

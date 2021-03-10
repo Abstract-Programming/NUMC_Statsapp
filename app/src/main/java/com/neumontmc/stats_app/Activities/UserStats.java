@@ -1,5 +1,6 @@
 package com.neumontmc.stats_app.Activities;
 
+import com.bumptech.glide.Glide;
 import com.neumontmc.stats_app.Controllers.APIController;
 import com.neumontmc.stats_app.Controllers.ObjCompressor;
 import com.neumontmc.stats_app.R;
@@ -7,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.io.IOException;
@@ -19,6 +21,10 @@ public class UserStats extends AppCompatActivity {
     TextView nameTV, uuidTV;
 
     String nameData, uuidData;
+
+    Glide glide;
+
+    ImageView userPFP;
 
     APIController apic;
 

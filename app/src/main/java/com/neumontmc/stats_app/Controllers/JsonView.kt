@@ -18,7 +18,6 @@ import org.json.JSONException
 import org.json.JSONObject
 
 import androidx.annotation.ColorInt
-import androidx.annotation.DimenRes
 import androidx.annotation.Dimension
 import androidx.core.content.ContextCompat
 import androidx.core.widget.TextViewCompat
@@ -188,18 +187,13 @@ class JsonView : LinearLayout {
             is JSONArray -> jsonNode.length()
             else -> 0
         }
-
         val textViewHeader: TextView = getHeader(nodeKey, jsonNode, haveNext, true, childCount)
-
         content.addView(textViewHeader)
-
         if (childCount > 0) {
             val viewGroupChild = getJsonNodeChild(nodeKey, jsonNode)
             val textViewFooter = getFooter(jsonNode, haveNext)
-
             content.addView(viewGroupChild)
             content.addView(textViewFooter)
-
             textViewHeader.setOnClickListener {
                 val newVisibility: Int
                 val showChild: Boolean
