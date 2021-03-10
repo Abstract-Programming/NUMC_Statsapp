@@ -278,7 +278,7 @@ class JsonView : LinearLayout {
                     append("{ ... }")
                 }
                 if (haveNext) {
-                    append(",")
+                    //append(",")
                 }
             } else {
                 if (jsonNode is JSONArray) {

@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class SearchUsersActivity extends AppCompatActivity {
     APIController apic;
     RecyclerView recyclerView;
-    FloatingActionButton reload, logo, help;
+    FloatingActionButton reload, logo, help, info;
     boolean isFABOpen = false;
     ArrayList<User> users;
 
@@ -63,6 +63,7 @@ public class SearchUsersActivity extends AppCompatActivity {
         logo = (FloatingActionButton) findViewById(R.id.floatingActionButton);
         reload = (FloatingActionButton) findViewById(R.id.floatingActionButton2);
         help = (FloatingActionButton) findViewById(R.id.floatingActionButton3);
+        info = (FloatingActionButton) findViewById(R.id.floatingActionButton4);
         logo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,15 +82,18 @@ public class SearchUsersActivity extends AppCompatActivity {
 
     private void showFABMenu() {
         isFABOpen = true;
-        reload.animate().translationY(-150);//aprox 145 len
-        help.animate().translationX(-150);
+        reload.animate().translationY(-155);//aprox 145 len
+        help.animate().translationX(-155);
+        info.animate().translationY(-155).translationX(-155);
+        logo.setImageResource(R.drawable.ic_close);
     }
 
     private void closeFABMenu() {
         isFABOpen = false;
         reload.animate().translationY(0);
         help.animate().translationX(0);
-
+        info.animate().translationY(0).translationX(0);
+        logo.setImageResource(R.drawable.ic_logo );
     }
 
     private ArrayList<User> removeFaction(ArrayList<User> currentList) {
