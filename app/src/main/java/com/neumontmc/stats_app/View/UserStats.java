@@ -25,6 +25,7 @@ public class UserStats extends AppCompatActivity {
     String nameData, uuidData;
 
     APIController apic;
+    String[] availableAttributes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public class UserStats extends AppCompatActivity {
         getData();
         setData();
         RecyclerView recyclerView = findViewById(R.id.stats);
-        StatAdapter sAdapter = new StatAdapter(getApplication().getBaseContext(), null);
+        StatAdapter sAdapter = new StatAdapter(this, availableAttributes);
         recyclerView.setAdapter(sAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

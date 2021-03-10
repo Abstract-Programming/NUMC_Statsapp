@@ -16,12 +16,12 @@ import java.util.ArrayList;
 
 public class StatAdapter extends RecyclerView.Adapter<StatAdapter.ViewHolder>{
 
-    ArrayList<Ustats> ustast;
+    String[] availableAttributes;
     Context context;
 
-    public StatAdapter(Context ct, ArrayList<Ustats> ustast) {
+    public StatAdapter(Context ct, String[] avaStat) {
         context = ct;
-        this.ustast = ustast;
+        this.availableAttributes = avaStat;
     }
 
     @NonNull
@@ -34,23 +34,21 @@ public class StatAdapter extends RecyclerView.Adapter<StatAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.key.setText(ustast.get(position).getUUID());
-        holder.value.setText(ustast.get(position).getContent().getDeaths().toString());
+        holder.value.setText(availableAttributes[position]);
     }
 
     @Override
     public int getItemCount() {
-        return ustast.size();
+        return availableAttributes.length;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView key, value;
+        TextView value;
         ConstraintLayout mainLayout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             mainLayout = itemView.findViewById(R.id.mainLayout);
-            key = itemView.findViewById(R.id.statKey);
             value = itemView.findViewById(R.id.statAttr);
         }
     }
