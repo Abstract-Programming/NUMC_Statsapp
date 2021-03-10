@@ -18,6 +18,8 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import sh.vex.jsonviewer.JsonViewer;
+
 public class UserStats extends AppCompatActivity {
 
     TextView nameTV, uuidTV;
@@ -39,13 +41,16 @@ public class UserStats extends AppCompatActivity {
         }
         nameTV = findViewById(R.id.us_NameTextView);
         uuidTV = findViewById(R.id.us_UuidTextView);
-
         getData();
         setData();
-        RecyclerView recyclerView = findViewById(R.id.stats);
-        StatAdapter sAdapter = new StatAdapter(this, availableAttributes);
-        recyclerView.setAdapter(sAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        JsonViewer jsonViewer = findViewById(R.id.jsonViewer);
+        for(int i = 0; i < apic.getDatablocks().size(); i++){
+            if(apic.getDatablocks().get(i).contains(getIntent().getStringExtra("uuid"))){
+                jsonViewer.setJson(apic.getDatablocks().get(i));
+                break;
+            }
+        }
+
     }
 
     public void getData(){

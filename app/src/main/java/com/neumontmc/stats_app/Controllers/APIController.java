@@ -17,7 +17,7 @@ import com.neumontmc.api.Models.ustats.Ustats;
 public class APIController implements Parcelable, Serializable {
     private ArrayList<User> userList = null;
     private ArrayList<User_mcmmo> mcmmoList = null;
-    private ArrayList<Ustats> ustats = null;
+    //private ArrayList<Ustats> ustats = null;
     private ArrayList<String> datablocks = null;
     private transient final Thread getUsers = new Thread(new Runnable() {
         @Override
@@ -55,7 +55,8 @@ public class APIController implements Parcelable, Serializable {
     public APIController(Parcel parcel){
         this.userList = parcel.readArrayList(null);
         this.mcmmoList = parcel.readArrayList(null);
-        this.ustats = parcel.readArrayList(null);
+        //this.ustats = parcel.readArrayList(null);
+        this.datablocks = parcel.readArrayList(null);
     }
 
     //Default constructor
@@ -79,13 +80,13 @@ public class APIController implements Parcelable, Serializable {
     }
 
     //Getters and Setters
-    public ArrayList<Ustats> getUstats() {
-        return ustats;
-    }
-
-    public void setUstats(ArrayList<Ustats> ustats) {
-        this.ustats = ustats;
-    }
+//    //public ArrayList<Ustats> getUstats() {
+//        return ustats;
+//    }
+//
+//    public void setUstats(ArrayList<Ustats> ustats) {
+//        this.ustats = ustats;
+//    }
 
     public void setUserList(ArrayList<User> userList) {
         this.userList = userList;
@@ -134,7 +135,8 @@ public class APIController implements Parcelable, Serializable {
         try {
             dest.writeArray(new ArrayList[]{userList});
             dest.writeArray(new ArrayList[]{mcmmoList});
-            dest.writeArray(new ArrayList[]{ustats});
+            //dest.writeArray(new ArrayList[]{ustats});
+            dest.writeArray(new ArrayList[]{datablocks});
         }catch (RuntimeException e){
             Log.e("FATAL ERROR", "Failed to write to parcel arrays.");
             e.printStackTrace();

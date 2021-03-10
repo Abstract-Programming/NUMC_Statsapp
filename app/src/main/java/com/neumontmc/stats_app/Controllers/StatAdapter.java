@@ -14,7 +14,7 @@ import com.neumontmc.stats_app.R;
 
 import java.util.ArrayList;
 
-public class StatAdapter extends RecyclerView.Adapter<StatAdapter.ViewHolder>{
+public class  StatAdapter extends RecyclerView.Adapter<StatAdapter.ViewHolder>{
 
     String[] availableAttributes;
     Context context;

@@ -108,8 +108,9 @@ public class SearchUsersActivity extends AppCompatActivity {
     }
 
     private void genViewer(ArrayList<User> currentUsers) {
-        SearchAdapter sAdapter = new SearchAdapter(this, currentUsers);
+        SearchAdapter sAdapter = new SearchAdapter(this, currentUsers, apic);
         recyclerView.setAdapter(sAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
+
 }

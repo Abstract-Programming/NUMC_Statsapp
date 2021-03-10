@@ -21,16 +21,19 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder> {
 
     ArrayList<User> users;
+    APIController apic;
     Context context;
     Glide glide;
-    public SearchAdapter(Context ct, ArrayList<User> users) {
+    public SearchAdapter(Context ct, ArrayList<User> users, APIController apic) {
         context = ct;
         this.users = users;
+        this.apic = apic;
     }
 
     @NonNull
@@ -55,9 +58,13 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
                 Intent intent = new Intent(context, UserStats.class);
                 intent.putExtra("name", users.get(position).getUsername());
                 intent.putExtra("uuid", users.get(position).getUuid().getUUID());
-
-                //byte[] compressedObj = new ObjCompressor().compressObject(apiController);//Compress apiController (needed to prevent BINDER exception)
-                //intent.putExtra("compressedApiController", compressedObj);
+                byte[] compressedObj = new byte[0];
+                try {
+                    compressedObj = new ObjCompressor().compressObject(apic);
+                    intent.putExtra("compressedApiController", compressedObj);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 context.startActivity(intent);
             }
         });
