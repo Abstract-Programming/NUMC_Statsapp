@@ -9,10 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import com.neumontmc.api.Models.ustats.Ustats;
 import com.neumontmc.stats_app.R;
-
-import java.util.ArrayList;
 
 public class  StatAdapter extends RecyclerView.Adapter<StatAdapter.ViewHolder>{
 
